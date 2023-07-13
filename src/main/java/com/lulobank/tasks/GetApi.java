@@ -6,6 +6,8 @@ import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.Tasks;
 import net.serenitybdd.screenplay.rest.interactions.Get;
 
+import static com.lulobank.utils.Constants.API_KEY_VALUE;
+
 public class GetApi implements Task {
 
     private final String pathApi;
@@ -14,14 +16,14 @@ public class GetApi implements Task {
         this.pathApi = pathApi;
     }
 
+    public static Performable requestGetMethod (String pathApi){
+        return Tasks.instrumented(GetApi.class, pathApi);
+    }
+
     @Override
     public <T extends Actor> void performAs(T actor) {
         actor.attemptsTo(Get.resource(pathApi)
                 .with(requestSpecification
-                        -> requestSpecification.header("x-api-key", "live_UY1bNWX0qtDAY7V3i2cT7P94YxfrZNXuGDvcgU6Azq8C4clEV2wd5FJzuFFgDLUP")));
-    }
-
-    public static Performable requestGetMethod (String pathApi){
-        return Tasks.instrumented(GetApi.class, pathApi);
+                        -> requestSpecification.header("x-api-key", API_KEY_VALUE)));
     }
 }

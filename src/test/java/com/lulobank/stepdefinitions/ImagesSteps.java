@@ -2,6 +2,7 @@ package com.lulobank.stepdefinitions;
 
 import com.lulobank.questions.ResponseCode;
 import com.lulobank.tasks.GetApi;
+import com.lulobank.tasks.PostApi;
 import io.cucumber.java.Before;
 import io.cucumber.java.es.Cuando;
 import io.cucumber.java.es.Dado;
@@ -43,10 +44,8 @@ public class ImagesSteps {
                 .setRelaxedHTTPSValidation()
                 .build();
     }
-
-    Actor david;
-    @Dado("Realizo la conexion al API")
-    public void realizoLaConexionAlAPI() {
+    @Dado("se tiene un usuario con permisos del APICAT")
+    public void seTieneUnUsuarioConPermisosDelAPICAT() {
         theActorInTheSpotlight().whoCan(CallAnApi.at("/"));
     }
 
@@ -59,5 +58,21 @@ public class ImagesSteps {
     public void obtengoUnCodigoDeRepuesta(int statusCode) {
         theActorInTheSpotlight().should(seeThat("El codigo de respuesta", ResponseCode.getStatusCode()
                 , equalTo(statusCode)));
+    }
+
+    @Cuando("se envia la peticion con la informacion necesario para subir la imagen")
+    public void seEnviaLaPeticionConLaInformacionNecesarioParaSubirLaImagen() {
+        String uploadDataInfo = "{\n" +
+                "    \"file\": \"/src/main/java/com/lulobank/files/cat_2.jpeg\"\n" +
+                "}";
+        theActorInTheSpotlight().attemptsTo(PostApi.infoUpload(uploadDataInfo));
+    }
+
+    @Entonces("se obtiene una respuesta exitosa para la peticion realizada")
+    public void seObtieneUnaRespuestaExitosaParaLaPeticionRealizada() {
+    }
+
+    @Y("se valida que el registro de la imagen existe en el repositorio del APICAT")
+    public void seValidaQueElRegistroDeLaImagenExisteEnElRepositorioDelAPICAT() {
     }
 }
