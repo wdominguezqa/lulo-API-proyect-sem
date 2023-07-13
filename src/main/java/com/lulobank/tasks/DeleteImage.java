@@ -22,7 +22,7 @@ public class DeleteImage implements Task {
 
     @Override
     public <T extends Actor> void performAs(T actor) {
-        actor.attemptsTo(Delete.from(idValue)
+        actor.attemptsTo(Delete.from("images"+"/"+idValue)
                 .with(requestSpecification
                         -> requestSpecification.header("x-api-key", API_KEY_VALUE)));
     }

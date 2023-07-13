@@ -11,9 +11,9 @@ Escenario: Consulta exitosa del servicio GET para obtener todas las imagenes apr
 @get_specific_image
 Escenario: Consultar la información de una imagen en especifico
   Dado se tiene un usuario con permisos del APICAT
-  Cuando se envia la peticion con el id "plUcRpyGp" de la imagen
+  Cuando se envia la peticion con el id "gwpO8VqF7" de la imagen
   Entonces se obtiene una respuesta exitosa
-  Y la informacion recibida corresponde a la consultada segun el id "plUcRpyGp"
+  Y la informacion recibida corresponde a la consultada segun el id "gwpO8VqF7"
 
 @upload_image
 Escenario: Subir una imagen al repositorio de imagenes del APICAT
@@ -25,5 +25,5 @@ Escenario: Subir una imagen al repositorio de imagenes del APICAT
 @delete_an_image
 Escenario: Borrar registro de imagen cargada al repositorio de imagenes del APICAT
   Dado se tiene un usuario con permisos del APICAT
-  Cuando se envia la peticion para borrar el registro con el id "plUcRpyGp" de la imagen
+  Cuando se envia la peticion para borrar el registro con el id "svRROiE6l" de la imagen
   Entonces la imagen se elimina del repositorio de imagenes del APICAT

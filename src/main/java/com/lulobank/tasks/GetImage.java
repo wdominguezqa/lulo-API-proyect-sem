@@ -22,7 +22,7 @@ public class GetImage implements Task {
 
     @Override
     public <T extends Actor> void performAs(T actor) {
-        actor.attemptsTo(Get.resource(pathApi)
+        actor.attemptsTo(Get.resource("images"+"/"+pathApi)
                 .with(requestSpecification
                         -> requestSpecification.header("x-api-key", API_KEY_VALUE)));
     }

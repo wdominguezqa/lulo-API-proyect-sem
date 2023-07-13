@@ -43,4 +43,11 @@ public class BreedsSteps {
     public void seEnviaLaPeticionAlServicioParaTraerTodoElListadoDeRazas(String pathApi) {
         theActorInTheSpotlight().attemptsTo(GetBreeds.requestGetMethod(pathApi));
     }
+
+    @Entonces("se obtiene una respuesta exitosa del servicio")
+    public void seObtieneUnaRespuestaExitosaDelServicio() {
+        assertThat(CODES_DO_NOT_MATCH, theActorInTheSpotlight().asksFor(
+                ResponseCode.getStatusCode()
+        ), equalTo(STATUS_CODE_SUCCESS));
+    }
 }

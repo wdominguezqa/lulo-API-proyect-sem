@@ -39,7 +39,7 @@ public class FavouritesSteps {
     public void seEnviaLaPeticionConLaInformacionNecesarioParaMarcarComoFavoritaUnaImagen() {
 
         RegisterFavouriteInfo registerFavouriteInfo = new RegisterFavouriteInfo();
-        registerFavouriteInfo.setImage_id("kq82Pkd8K");
+        registerFavouriteInfo.setImage_id("ZWvxuftCe");
 
         theActorInTheSpotlight().attemptsTo(PostFavourites.infoPostFavourite(registerFavouriteInfo));
     }

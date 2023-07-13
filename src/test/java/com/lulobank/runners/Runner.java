@@ -11,7 +11,6 @@ import static io.cucumber.junit.CucumberOptions.SnippetType.CAMELCASE;
         features = "src/test/resources/features",
         plugin = {"pretty", "html:target/cucumber"},
         glue = "com/lulobank/stepdefinitions",
-        tags = "@upload_image",
         snippets = CAMELCASE,
         monochrome = true
 )

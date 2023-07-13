@@ -58,9 +58,6 @@ public class ImagesSteps {
 
     @Entonces("Obtengo un codigo de repuesta {int}")
     public void obtengoUnCodigoDeRepuesta(int statusCode) {
-        //theActorInTheSpotlight().should(seeThat("El codigo de respuesta", ResponseCode.getStatusCode()
-                //, equalTo(statusCode)));
-
         assertThat(CODES_DO_NOT_MATCH, theActorInTheSpotlight().asksFor(
                 ResponseCode.getStatusCode()
         ), equalTo(statusCode));

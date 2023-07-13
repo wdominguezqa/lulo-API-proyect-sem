@@ -18,7 +18,7 @@ public class GetBreeds implements Task {
     }
 
     public static Performable requestGetMethod (String pathApi){
-        return Tasks.instrumented(GetImage.class, pathApi);
+        return Tasks.instrumented(GetBreeds.class, pathApi);
     }
 
     @Override
