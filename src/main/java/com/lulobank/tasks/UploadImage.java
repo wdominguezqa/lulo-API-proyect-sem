@@ -12,16 +12,16 @@ import java.io.File;
 
 import static com.lulobank.utils.Constants.API_KEY_VALUE;
 
-public class PostApi implements Task {
+public class UploadImage implements Task {
 
     private final String uploadData;
 
-    public PostApi(String uploadData) {
+    public UploadImage(String uploadData) {
         this.uploadData = uploadData;
     }
 
     public static Performable infoUpload(String uploadData){
-        return Tasks.instrumented(PostApi.class, uploadData);
+        return Tasks.instrumented(UploadImage.class, uploadData);
     }
 
 

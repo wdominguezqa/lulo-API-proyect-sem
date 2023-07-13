@@ -5,8 +5,15 @@ Característica: consultar los servicios del path /images del API
 @get_all_images
 Escenario: Consulta exitosa del servicio GET para obtener todas las imagenes aprobadas
   Dado se tiene un usuario con permisos del APICAT
-  Cuando Realizo la peticion al servicio "search"
-  Entonces Obtengo un codigo de repuesta 200
+  Cuando se envia la peticion al servicio "search" para traer todo el listado de imagenes aprobadas
+  Entonces se obtiene una respuesta exitosa
+
+@get_specific_image
+Escenario: Consultar la información de una imagen en especifico
+  Dado se tiene un usuario con permisos del APICAT
+  Cuando se envia la peticion con el id "plUcRpyGp" de la imagen
+  Entonces se obtiene una respuesta exitosa
+  Y la informacion recibida corresponde a la consultada segun el id "plUcRpyGp"
 
 @upload_image
 Escenario: Subir una imagen al repositorio de imagenes del APICAT
@@ -17,7 +24,6 @@ Escenario: Subir una imagen al repositorio de imagenes del APICAT
 
 @delete_an_image
 Escenario: Borrar registro de imagen cargada al repositorio de imagenes del APICAT
-  Dado se desea eliminar un registro de imagen
-  Cuando se envia el la peticion con el id de la imagen que se desea borrar
-  Entonces se obtiene una respuesta exitosa
-  Y la imagen se elimina del repositorio de imagenes del APICAT
+  Dado se tiene un usuario con permisos del APICAT
+  Cuando se envia la peticion para borrar el registro con el id "plUcRpyGp" de la imagen
+  Entonces la imagen se elimina del repositorio de imagenes del APICAT
