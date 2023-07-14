@@ -5,7 +5,6 @@ import com.lulobank.questions.ResponseCode;
 import com.lulobank.tasks.DeleteFavourite;
 import com.lulobank.tasks.GetFavourites;
 import com.lulobank.tasks.PostFavourites;
-import com.sun.xml.bind.v2.model.core.ID;
 import io.cucumber.java.Before;
 import io.cucumber.java.es.Cuando;
 import io.cucumber.java.es.Y;
@@ -54,9 +53,8 @@ public class FavouritesSteps {
 
     @Y("se consulta un registro de imagen favorita en el servicio {string}")
     public void seConsultaUnRegistroDeImagenFavoritaEnElServicio(String pathApi) {
-        theActorInTheSpotlight().attemptsTo(GetFavourites.requestGetFavourite(pathApi));
 
-        System.out.println(ResponseCode.getIdFavouriteImage());
+        theActorInTheSpotlight().attemptsTo(GetFavourites.requestGetFavourite(pathApi));
         theActorInTheSpotlight().remember("id_favourite", ResponseCode.getIdFavouriteImage());
     }
 
