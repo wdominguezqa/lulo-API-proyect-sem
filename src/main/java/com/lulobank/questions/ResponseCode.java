@@ -17,8 +17,10 @@ public class ResponseCode{
     }
 
     public static Question <String> getIdFavouriteImage(){
-        return Question.about("ID del primer registro de imagen encontrado marcada como favorita")
-                .answeredBy(actor -> SerenityRest.lastResponse().jsonPath().getString("[0].id"));
+        return Question
+                .about("ID del primer registro de imagen encontrado marcada como favorita")
+                .answeredBy(actor -> SerenityRest.lastResponse().jsonPath()
+                        .getString("[0].id"));
 
     }
 
