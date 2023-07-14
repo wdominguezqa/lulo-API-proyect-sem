@@ -25,5 +25,5 @@ Escenario: Subir una imagen al repositorio de imagenes del APICAT
 @delete_an_image
 Escenario: Borrar registro de imagen cargada al repositorio de imagenes del APICAT
   Dado se tiene un usuario con permisos del APICAT
-  Cuando se envia la peticion para borrar el registro con el id "svRROiE6l" de la imagen
+  Cuando se envia la peticion para borrar el registro con el id "l1T_e7g-n" de la imagen
   Entonces la imagen se elimina del repositorio de imagenes del APICAT
