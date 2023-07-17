@@ -1,6 +1,6 @@
 package com.lulobank.models;
 
-public class RegisterFavouriteInfo {
+public class FavouriteImage {
     private String image_id;
 
     public String getImage_id() {

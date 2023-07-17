@@ -4,6 +4,7 @@ import com.lulobank.questions.ResponseCode;
 import com.lulobank.tasks.DeleteImage;
 import com.lulobank.tasks.GetImage;
 import com.lulobank.tasks.UploadImage;
+import com.lulobank.utils.SetUpRest;
 import io.cucumber.java.Before;
 import io.cucumber.java.es.Cuando;
 import io.cucumber.java.es.Dado;
@@ -14,9 +15,11 @@ import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.http.ContentType;
+import net.serenitybdd.core.Serenity;
 import net.serenitybdd.screenplay.actors.Cast;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.rest.abilities.CallAnApi;
+import org.hamcrest.Matchers;
 
 import static com.lulobank.exceptions.ErrorAssertions.INVALID_DATA;
 import static com.lulobank.utils.Constants.*;
@@ -29,22 +32,11 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 public class ImagesSteps {
-
-    @Before
-    public static void actor(){
-        OnStage.setTheStage(new Cast());
-        theActorCalled("david");
-    }
-
     @Before
     public static void setUpRest(){
-        RestAssured.baseURI = BASE_URI_CATAPI;
-        RestAssured.basePath = BASE_PATH_IMAGES_CATAPI;
-        RestAssured.filters(new RequestLoggingFilter(), new ResponseLoggingFilter());
-        RestAssured.requestSpecification = new RequestSpecBuilder()
-                .setContentType(ContentType.JSON)
-                .setRelaxedHTTPSValidation()
-                .build();
+        SetUpRest.restConfig();
+        OnStage.setTheStage(new Cast());
+        theActorCalled("david");
     }
     @Dado("se tiene un usuario con permisos del APICAT")
     public void seTieneUnUsuarioConPermisosDelAPICAT() {
@@ -65,16 +57,15 @@ public class ImagesSteps {
 
     @Cuando("se envia la peticion con la informacion necesario para subir la imagen")
     public void seEnviaLaPeticionConLaInformacionNecesarioParaSubirLaImagen() {
-        String uploadDataInfo = "{\n" +
-                "    \"file\": \"/src/main/java/com/lulobank/files/cat_2.jpeg\"\n" +
-                "}";
-        theActorInTheSpotlight().attemptsTo(UploadImage.infoUpload(uploadDataInfo));
+
+        String urlImage = "src/test/resources/files/cat_1.jpeg";
+        theActorInTheSpotlight().attemptsTo(UploadImage.infoUpload(urlImage));
     }
 
     @Entonces("se obtiene una respuesta exitosa para la peticion realizada")
     public void seObtieneUnaRespuestaExitosaParaLaPeticionRealizada() {
         theActorInTheSpotlight().should(seeThat("El codigo de respuesta", ResponseCode.getStatusCode()
-        , equalTo("201")));
+        , equalTo(201)));
     }
 
     @Y("se valida que el registro de la imagen existe en el repositorio del APICAT")

@@ -1,4 +1,5 @@
 #language: es
+@all_services
 Característica: consultar los servicios del path /favourites del API
 
 @post_favourite_record
@@ -7,7 +8,7 @@ Dado se tiene un usuario con permisos del APICAT
 Cuando se envia la peticion con la informacion necesario para marcar como favorita una imagen
 Entonces se obtiene una respuesta exitosa
 
-@delete_favourite_record
+@delete_favourite_record @favourites
 Escenario: Eliminar un registro de imagen favorita
 Dado se tiene un usuario con permisos del APICAT
 Y se consulta un registro de imagen favorita en el servicio "favourites"

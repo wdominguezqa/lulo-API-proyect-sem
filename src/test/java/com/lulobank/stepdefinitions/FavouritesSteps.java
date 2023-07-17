@@ -1,10 +1,11 @@
 package com.lulobank.stepdefinitions;
 
-import com.lulobank.models.RegisterFavouriteInfo;
+import com.lulobank.models.FavouriteImage;
 import com.lulobank.questions.ResponseCode;
 import com.lulobank.tasks.DeleteFavourite;
 import com.lulobank.tasks.GetFavourites;
 import com.lulobank.tasks.PostFavourites;
+import com.lulobank.utils.SetUpRest;
 import io.cucumber.java.Before;
 import io.cucumber.java.es.Cuando;
 import io.cucumber.java.es.Y;
@@ -25,30 +26,19 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class FavouritesSteps {
 
-    @Before
-    public static void actor(){
+    @Before ("@favourites")
+    public static void setUpRest(){
+        SetUpRest.restConfig();
         OnStage.setTheStage(new Cast());
         theActorCalled("david");
-    }
-
-    @Before
-    public static void setUpRest(){
-        RestAssured.baseURI = BASE_URI_CATAPI;
-        RestAssured.basePath = BASE_PATH_CATAPI;
-        RestAssured.filters(new RequestLoggingFilter(), new ResponseLoggingFilter());
-        RestAssured.requestSpecification = new RequestSpecBuilder()
-                .setContentType(ContentType.JSON)
-                .setRelaxedHTTPSValidation()
-                .build();
     }
 
     @Cuando("se envia la peticion con la informacion necesario para marcar como favorita una imagen")
     public void seEnviaLaPeticionConLaInformacionNecesarioParaMarcarComoFavoritaUnaImagen() {
 
-        RegisterFavouriteInfo registerFavouriteInfo = new RegisterFavouriteInfo();
-        registerFavouriteInfo.setImage_id("ZWvxuftCe");
-
-        theActorInTheSpotlight().attemptsTo(PostFavourites.infoPostFavourite(registerFavouriteInfo));
+        FavouriteImage favouriteImage = new FavouriteImage();
+        favouriteImage.setImage_id("ZWvxuftCe");
+        theActorInTheSpotlight().attemptsTo(PostFavourites.infoPostFavourite(favouriteImage));
     }
 
     @Y("se consulta un registro de imagen favorita en el servicio {string}")

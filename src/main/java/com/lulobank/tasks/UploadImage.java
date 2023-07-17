@@ -27,11 +27,13 @@ public class UploadImage implements Task {
 
     @Override
     public <T extends Actor> void performAs(T actor) {
-        actor.attemptsTo(Post.to("upload")
+        File file = new File(uploadData);
+        actor.attemptsTo(Post.to("images/upload")
                 .with(requestSpecification
-                        -> requestSpecification.header("x-api-key", API_KEY_VALUE)
+                        -> requestSpecification
+                        .header("x-api-key", API_KEY_VALUE)
                         .contentType(ContentType.MULTIPART)
-                        .multiPart("file", new File(uploadData), "multipart/form-data")
+                        .multiPart("file", file, "image/jpeg").log().all()
                 ));
     }
 }

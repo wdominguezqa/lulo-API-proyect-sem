@@ -3,6 +3,7 @@ package com.lulobank.stepdefinitions;
 import com.lulobank.questions.ResponseCode;
 import com.lulobank.tasks.GetBreeds;
 import com.lulobank.tasks.GetImage;
+import com.lulobank.utils.SetUpRest;
 import io.cucumber.java.Before;
 import io.cucumber.java.es.Cuando;
 import io.cucumber.java.es.Entonces;
@@ -23,21 +24,11 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class BreedsSteps {
 
-    @Before
-    public static void actor(){
+    @Before ("@breeds")
+    public static void initialStage(){
+        SetUpRest.restConfig();
         OnStage.setTheStage(new Cast());
         theActorCalled("david");
-    }
-
-    @Before
-    public static void setUpRest(){
-        RestAssured.baseURI = BASE_URI_CATAPI;
-        RestAssured.basePath = BASE_PATH_CATAPI;
-        RestAssured.filters(new RequestLoggingFilter(), new ResponseLoggingFilter());
-        RestAssured.requestSpecification = new RequestSpecBuilder()
-                .setContentType(ContentType.JSON)
-                .setRelaxedHTTPSValidation()
-                .build();
     }
     @Cuando("se envia la peticion al servicio {string} para traer todo el listado de razas")
     public void seEnviaLaPeticionAlServicioParaTraerTodoElListadoDeRazas(String pathApi) {
