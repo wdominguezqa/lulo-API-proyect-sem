@@ -2,16 +2,10 @@ package com.lulobank.stepdefinitions;
 
 import com.lulobank.questions.ResponseCode;
 import com.lulobank.tasks.GetBreeds;
-import com.lulobank.tasks.GetImage;
 import com.lulobank.utils.SetUpRest;
 import io.cucumber.java.Before;
 import io.cucumber.java.es.Cuando;
 import io.cucumber.java.es.Entonces;
-import io.restassured.RestAssured;
-import io.restassured.builder.RequestSpecBuilder;
-import io.restassured.filter.log.RequestLoggingFilter;
-import io.restassured.filter.log.ResponseLoggingFilter;
-import io.restassured.http.ContentType;
 import net.serenitybdd.screenplay.actors.Cast;
 import net.serenitybdd.screenplay.actors.OnStage;
 
